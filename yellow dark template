@@ -1,0 +1,210 @@
+I’ll create a beautiful portfolio website for you based on the reference design with the yellow, black, white, and grey color scheme!
+
+Let me build this complete portfolio with:
+
+Left sidebar navigation with yellow accent
+Home section with profile introduction
+About Me with services and statistics
+Resume timeline
+Portfolio gallery with filters
+Testimonials
+Contact section
+Creating your portfolio now:
+
+<new_file>
+<path>src/pages/home/page.tsx</path>
+<content>import Sidebar from './components/Sidebar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Resume from './components/Resume';
+import Portfolio from './components/Portfolio';
+import Testimonials from './components/Testimonials';
+import Contact from './components/Contact';
+export default function Home() {
+  return (
+    <div className="flex min-h-screen bg-gray-50">
+      <Sidebar />
+      <main className="flex-1 ml-64">
+        <Hero />
+        <About />
+        <Resume />
+        <Portfolio />
+        <Testimonials />
+        <Contact />
+      </main>
+    </div>
+  );
+}
+</content>
+</new_file>
+<new_file>
+<path>src/pages/home/components/Sidebar.tsx</path>
+<content>export default function Sidebar() {
+  const navItems = [
+    { id: 'home', label: 'Home', icon: 'ri-home-5-line' },
+    { id: 'about', label: 'About', icon: 'ri-user-3-line' },
+    { id: 'resume', label: 'Resume', icon: 'ri-file-text-line' },
+    { id: 'portfolio', label: 'Portfolio', icon: 'ri-briefcase-line' },
+    { id: 'testimonials', label: 'Testimonials', icon: 'ri-chat-3-line' },
+    { id: 'contact', label: 'Contact', icon: 'ri-mail-line' }
+  ];
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  return (
+    <aside className="fixed left-0 top-0 h-screen w-64 bg-white shadow-lg z-50 flex flex-col">
+      <div className="p-8 border-b border-gray-100">
+        <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 mb-4">
+          <img
+            src="https://readdy.ai/api/search-image?query=professional portrait photo of a confident creative designer with warm smile in modern studio lighting with clean neutral background&width=200&height=200&seq=profile001&orientation=squarish"
+            alt="Profile"
+            className="w-full h-full object-cover object-top"
+          />
+        </div>
+        <h2 className="text-xl font-bold text-center text-gray-800">Sarah Anderson</h2>
+        <p className="text-sm text-center text-gray-500 mt-1">Creative Designer</p>
+      </div>
+      <nav className="flex-1 px-6 py-8">
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            onClick={() => scrollToSection(item.id)}
+            className="w-full flex items-center gap-4 px-4 py-3 rounded-lg text-gray-600 hover:bg-yellow-50 hover:text-yellow-500 transition-all duration-200 group cursor-pointer mb-2"
+          >
+            <div className="w-5 h-5 flex items-center justify-center">
+              <i className={`${item.icon} text-xl group-hover:text-yellow-500`}></i>
+            </div>
+            <span className="font-medium whitespace-nowrap">{item.label}</span>
+          </button>
+        ))}
+      </nav>
+      <div className="p-6 border-t border-gray-100">
+        <div className="flex justify-center gap-4">
+          <a href="https://linkedin.com" className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-yellow-400 hover:text-white transition-all duration-200 cursor-pointer">
+            <i className="ri-linkedin-fill text-lg"></i>
+          </a>
+          <a href="https://github.com" className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-yellow-400 hover:text-white transition-all duration-200 cursor-pointer">
+            <i className="ri-github-fill text-lg"></i>
+          </a>
+          <a href="https://dribbble.com" className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-yellow-400 hover:text-white transition-all duration-200 cursor-pointer">
+            <i className="ri-dribbble-fill text-lg"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+  );
+}
+</content>
+</new_file>
+<new_file>
+<path>src/pages/home/components/Hero.tsx</path>
+<content>export default function Hero() {
+  return (
+    <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-12">
+      <div className="max-w-4xl w-full">
+        <div className="text-center">
+          <div className="inline-block mb-6">
+            <span className="px-6 py-2 bg-yellow-400/10 text-yellow-600 rounded-full text-sm font-medium">
+              Welcome to my portfolio
+            </span>
+          </div>
+          <h1 className="text-6xl font-bold text-gray-800 mb-6">
+            Hi, I'm <span className="text-yellow-400">Sarah Anderson</span>
+          </h1>
+          <p className="text-2xl text-gray-600 mb-4">Creative Designer &amp; Developer</p>
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-8">
+            I craft beautiful digital experiences that blend creativity with functionality. With over 8 years of experience in design and development, I help brands tell their stories through compelling visual narratives and intuitive user interfaces.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <button
+              onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-4 bg-yellow-400 text-gray-800 rounded-lg font-semibold hover:bg-yellow-500 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer whitespace-nowrap"
+            >
+              View My Work
+            </button>
+            <button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-4 bg-white text-gray-800 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer whitespace-nowrap"
+            >
+              Get In Touch
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+</content>
+</new_file>
+<new_file>
+<path>src/pages/home/components/About.tsx</path>
+<content>export default function About() {
+  const services = [
+    {
+      icon: 'ri-palette-line',
+      title: 'UI/UX Design',
+      description: 'Creating intuitive and beautiful user interfaces that enhance user experience and drive engagement'
+    },
+    {
+      icon: 'ri-code-s-slash-line',
+      title: 'Web Development',
+      description: 'Building responsive and performant websites using modern technologies and best practices'
+    },
+    {
+      icon: 'ri-smartphone-line',
+      title: 'Mobile Design',
+      description: 'Designing mobile-first experiences that work seamlessly across all devices and platforms'
+    },
+    {
+      icon: 'ri-pencil-ruler-2-line',
+      title: 'Branding',
+      description: 'Developing cohesive brand identities that communicate your values and resonate with your audience'
+    }
+  ];
+  const stats = [
+    { number: '150+', label: 'Projects Completed' },
+    { number: '85+', label: 'Happy Clients' },
+    { number: '8+', label: 'Years Experience' },
+    { number: '25+', label: 'Awards Won' }
+  ];
+  return (
+    <section id="about" className="min-h-screen py-20 px-12 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">About Me</h2>
+          <div className="w-20 h-1 bg-yellow-400 mx-auto"></div>
+        </div>
+        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          <div>
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">Who I Am</h3>
+            <p className="text-gray-600 mb-4 leading-relaxed">
+              I'm a passionate creative designer and developer based in San Francisco. With a background in both design and computer science, I bring a unique perspective to every project I work on.
+            </p>
+            <p className="text-gray-600 mb-4 leading-relaxed">
+              My approach combines strategic thinking with creative problem-solving to deliver solutions that not only look great but also achieve business objectives. I believe in creating meaningful digital experiences that leave lasting impressions.
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              When I'm not designing or coding, you can find me exploring new coffee shops, practicing photography, or contributing to open-source projects.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-6">
+            {stats.map((stat, index) => (
+              <div key={index} className="bg-gray-50 p-8 rounded-xl text-center hover:shadow-lg transition-shadow duration-200">
+                <div className="text-4xl font-bold text-yellow-400 mb-2">{stat.number}</div>
+                <div className="text-gray-600 font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">What I Do</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {services.map((service, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-200 border border-gray-100">
+                <div className="w-14 h-14 flex items-center justify-center bg-yellow-400/10 rounded-lg mb-4">
+                  <i className={`${service.icon} text-3xl text-yellow-500`}></i>
+                </div>
+                <h4 className="text-lg font-bold text-gray-800 mb-3">{service.title}</h4>
