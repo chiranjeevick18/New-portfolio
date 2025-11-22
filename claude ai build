@@ -1,0 +1,324 @@
+import React, { useState } from 'react';
+import { Home, User, FileText, Briefcase, MessageSquare, Mail, Phone, Globe, Linkedin, Github, Instagram, Twitter, Award, Users, TrendingUp, Video, Palette, Camera } from 'lucide-react';
+
+export default function Portfolio() {
+  const [activeSection, setActiveSection] = useState('home');
+  const [portfolioFilter, setPortfolioFilter] = useState('all');
+
+  const portfolioItems = {
+    video: [
+      { id: 1, title: 'Corporate Video', thumb: '🎬' },
+      { id: 2, title: 'Music Video', thumb: '🎵' },
+      { id: 3, title: 'Documentary', thumb: '📹' },
+      { id: 4, title: 'Commercial', thumb: '📺' }
+    ],
+    design: [
+      { id: 5, title: 'Brand Identity', thumb: '🎨' },
+      { id: 6, title: 'Poster Design', thumb: '🖼️' },
+      { id: 7, title: 'Logo Design', thumb: '✨' },
+      { id: 8, title: 'UI/UX Design', thumb: '💻' }
+    ],
+    photography: [
+      { id: 9, title: 'Portrait', thumb: '📸' },
+      { id: 10, title: 'Landscape', thumb: '🌄' },
+      { id: 11, title: 'Product', thumb: '📦' },
+      { id: 12, title: 'Event', thumb: '🎉' }
+    ]
+  };
+
+  const getFilteredItems = () => {
+    if (portfolioFilter === 'all') {
+      return [...portfolioItems.video, ...portfolioItems.design, ...portfolioItems.photography];
+    }
+    return portfolioItems[portfolioFilter] || [];
+  };
+
+  const testimonials = [
+    { name: 'Oliver', role: 'CEO, TechCorp', quote: 'Outstanding work! The video editing was top-notch and delivered on time.', rating: 5 },
+    { name: 'Harry', role: 'Marketing Director', quote: 'Creative designs that perfectly captured our brand vision.', rating: 5 },
+    { name: 'Laura', role: 'Startup Founder', quote: 'Professional, responsive, and incredibly talented. Highly recommend!', rating: 5 },
+    { name: 'Emma', role: 'Content Creator', quote: 'The attention to detail is amazing. Will definitely work together again!', rating: 5 }
+  ];
+
+  return (
+    <div className="flex min-h-screen bg-gray-100">
+      {/* Sidebar */}
+      <div className="w-48 bg-gradient-to-b from-yellow-500 to-yellow-600 text-black flex flex-col fixed h-full">
+        <div className="p-6">
+          <div className="w-24 h-24 rounded-full bg-white mx-auto mb-6 overflow-hidden border-4 border-black">
+            <div className="w-full h-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-3xl font-bold text-white">CK</div>
+          </div>
+        </div>
+        <nav className="flex-1">
+          {[
+            { id: 'home', label: 'HOME', icon: Home },
+            { id: 'about', label: 'ABOUT ME', icon: User },
+            { id: 'resume', label: 'RESUME', icon: FileText },
+            { id: 'portfolio', label: 'PORTFOLIO', icon: Briefcase },
+            { id: 'testimonials', label: 'TESTIMONIALS', icon: MessageSquare },
+            { id: 'contact', label: 'CONTACT', icon: Mail }
+          ].map(item => (
+            <button
+              key={item.id}
+              onClick={() => setActiveSection(item.id)}
+              className={`w-full text-left px-6 py-4 font-bold text-sm transition-all ${
+                activeSection === item.id ? 'bg-black text-yellow-400' : 'hover:bg-yellow-600'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+      </div>
+
+      {/* Main Content */}
+      <div className="ml-48 flex-1">
+        {/* HOME */}
+        {activeSection === 'home' && (
+          <div className="min-h-screen flex items-center justify-center p-12 bg-white">
+            <div className="max-w-6xl w-full grid grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-5xl font-black mb-2">
+                  <span className="text-yellow-500">HI THERE!</span>
+                </h2>
+                <h1 className="text-6xl font-black mb-4">
+                  I'M <span className="text-yellow-500">CHIRANJEEVI</span>
+                </h1>
+                <div className="bg-black text-white px-4 py-2 inline-block font-bold mb-2">VIDEO EDITOR / GRAPHIC DESIGNER</div>
+                <div className="bg-black text-yellow-400 px-4 py-2 inline-block font-bold mb-6">READY TO HANDLE YOUR NEW PROJECT</div>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Passionate creative professional specializing in video editing and graphic design. I bring stories to life through compelling visuals and innovative design solutions.
+                </p>
+                <button className="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-yellow-500 hover:text-black transition-all">
+                  MORE ABOUT ME
+                </button>
+              </div>
+              <div className="relative">
+                <div className="w-96 h-96 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 mx-auto overflow-hidden border-8 border-yellow-400 relative">
+                  <div className="w-full h-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-9xl font-bold text-white">CK</div>
+                </div>
+                <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-3">
+                  {[Linkedin, Github, Instagram, Twitter, Mail, Phone].map((Icon, i) => (
+                    <div key={i} className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-yellow-400 hover:bg-yellow-500 hover:text-black transition-all cursor-pointer">
+                      <Icon size={20} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ABOUT ME */}
+        {activeSection === 'about' && (
+          <div className="min-h-screen p-12 bg-gray-50">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-6xl font-black mb-12">ABOUT ME</h2>
+              <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+                <div className="flex gap-8 items-start mb-8">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-5xl font-bold text-white flex-shrink-0">CK</div>
+                  <div>
+                    <h3 className="text-3xl font-bold mb-2">I'm Chiranjeevi Kumbhar, <span className="text-gray-600 font-normal">Video Editor / Graphic Designer</span></h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      With a passion for storytelling through visuals, I specialize in creating engaging video content and stunning graphic designs. My work combines technical expertise with creative vision to deliver projects that exceed expectations.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-8 mb-8">
+                  <div className="bg-yellow-50 p-6 rounded-lg">
+                    <h4 className="font-bold text-xl mb-4 bg-yellow-400 text-black px-3 py-1 inline-block">What I Do?</h4>
+                    <div className="space-y-4">
+                      {[
+                        { icon: Video, title: 'VIDEO EDITING', desc: 'Professional video editing with creative storytelling and technical precision.' },
+                        { icon: Palette, title: 'GRAPHIC DESIGN', desc: 'Eye-catching designs for brands, marketing materials, and digital content.' },
+                        { icon: Camera, title: 'PHOTOGRAPHY', desc: 'Capturing moments with artistic vision and professional equipment.' }
+                      ].map((service, i) => (
+                        <div key={i} className="flex gap-3">
+                          <div className="w-12 h-12 rounded-full bg-yellow-400 flex items-center justify-center flex-shrink-0">
+                            <service.icon size={24} />
+                          </div>
+                          <div>
+                            <h5 className="font-bold">{service.title}</h5>
+                            <p className="text-sm text-gray-600">{service.desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="bg-yellow-50 p-6 rounded-lg">
+                    <h4 className="font-bold text-xl mb-4 bg-yellow-400 text-black px-3 py-1 inline-block">Fun Facts</h4>
+                    <div className="grid grid-cols-2 gap-4">
+                      {[
+                        { num: '10+', label: 'YEARS EXPERIENCE' },
+                        { num: '450', label: 'PROJECTS COMPLETED' },
+                        { num: '65', label: 'AWARDS WON' },
+                        { num: '300+', label: 'HAPPY CLIENTS' },
+                        { num: '650K', label: 'FOLLOWERS' },
+                        { num: '+10', label: 'NEW VIDEOS/MONTH' }
+                      ].map((fact, i) => (
+                        <div key={i} className="bg-black text-white rounded-full w-28 h-28 flex flex-col items-center justify-center">
+                          <div className="text-2xl font-bold">{fact.num}</div>
+                          <div className="text-xs text-center">{fact.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* RESUME */}
+        {activeSection === 'resume' && (
+          <div className="min-h-screen p-12 bg-gray-50">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-6xl font-black mb-12">RESUME</h2>
+              <div className="grid grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                    <Award className="text-yellow-500" /> EDUCATION
+                  </h3>
+                  {[
+                    { year: '2015-2019', degree: 'Bachelor of Fine Arts', school: 'Design Institute' },
+                    { year: '2013-2015', degree: 'Diploma in Video Production', school: 'Media College' },
+                    { year: '2010-2013', degree: 'High School', school: 'Central High' }
+                  ].map((edu, i) => (
+                    <div key={i} className="mb-6 bg-white p-6 rounded-lg shadow">
+                      <div className="bg-yellow-400 text-black px-3 py-1 inline-block font-bold text-sm mb-2">{edu.year}</div>
+                      <h4 className="font-bold text-xl mb-1">{edu.degree}</h4>
+                      <p className="text-gray-600">{edu.school}</p>
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                    <Briefcase className="text-yellow-500" /> EXPERIENCE
+                  </h3>
+                  {[
+                    { year: '2021-Present', role: 'Senior Video Editor', company: 'Creative Studio' },
+                    { year: '2019-2021', role: 'Graphic Designer', company: 'Marketing Agency' },
+                    { year: '2017-2019', role: 'Junior Editor', company: 'Production House' }
+                  ].map((exp, i) => (
+                    <div key={i} className="mb-6 bg-white p-6 rounded-lg shadow">
+                      <div className="bg-yellow-400 text-black px-3 py-1 inline-block font-bold text-sm mb-2">{exp.year}</div>
+                      <h4 className="font-bold text-xl mb-1">{exp.role}</h4>
+                      <p className="text-gray-600">{exp.company}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* PORTFOLIO */}
+        {activeSection === 'portfolio' && (
+          <div className="min-h-screen p-12 bg-gray-50">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-6xl font-black mb-8">PORTFOLIO</h2>
+              <div className="flex gap-4 mb-8">
+                {[
+                  { id: 'all', label: 'ALL' },
+                  { id: 'video', label: 'VIDEO EDITING' },
+                  { id: 'design', label: 'GRAPHIC DESIGN' },
+                  { id: 'photography', label: 'PHOTOGRAPHY' }
+                ].map(filter => (
+                  <button
+                    key={filter.id}
+                    onClick={() => setPortfolioFilter(filter.id)}
+                    className={`px-6 py-2 font-bold rounded-full transition-all ${
+                      portfolioFilter === filter.id
+                        ? 'bg-yellow-400 text-black'
+                        : 'bg-white text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
+              <div className="grid grid-cols-3 gap-6">
+                {getFilteredItems().map(item => (
+                  <div key={item.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all cursor-pointer group">
+                    <div className="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-6xl group-hover:scale-110 transition-transform">
+                      {item.thumb}
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-bold">{item.title}</h4>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TESTIMONIALS */}
+        {activeSection === 'testimonials' && (
+          <div className="min-h-screen p-12 bg-gray-50">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-6xl font-black mb-12">TESTIMONIALS</h2>
+              <div className="grid grid-cols-2 gap-6">
+                {testimonials.map((testimonial, i) => (
+                  <div key={i} className="bg-gradient-to-br from-gray-800 to-gray-900 text-white p-6 rounded-lg shadow-lg">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-16 h-16 rounded-full bg-yellow-400 flex items-center justify-center text-2xl font-bold text-black">
+                        {testimonial.name[0]}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg">{testimonial.name}</h4>
+                        <p className="text-yellow-400 text-sm">{testimonial.role}</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 italic mb-2">"{testimonial.quote}"</p>
+                    <div className="flex gap-1">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <span key={i} className="text-yellow-400">★</span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* CONTACT */}
+        {activeSection === 'contact' && (
+          <div className="min-h-screen p-12 bg-gray-50 flex items-center">
+            <div className="max-w-4xl mx-auto w-full">
+              <h2 className="text-6xl font-black mb-12">CONTACT</h2>
+              <div className="bg-white rounded-lg shadow-lg p-12">
+                <h3 className="text-3xl font-bold mb-8 text-center">Feel Free to <span className="text-yellow-500">CONTACT ME!</span></h3>
+                <div className="grid grid-cols-2 gap-8 mb-8">
+                  {[
+                    { icon: Mail, label: 'EMAIL', value: 'chiranjeevi@example.com' },
+                    { icon: Phone, label: 'PHONE', value: '+91 98765 43210' },
+                    { icon: Globe, label: 'WEBSITE', value: 'www.chiranjeevi.com' },
+                    { icon: Linkedin, label: 'LINKEDIN', value: '/chiranjeevik' }
+                  ].map((contact, i) => (
+                    <div key={i} className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-full bg-yellow-400 flex items-center justify-center flex-shrink-0">
+                        <contact.icon size={28} />
+                      </div>
+                      <div>
+                        <div className="font-bold text-sm text-gray-500">{contact.label}</div>
+                        <div className="font-bold">{contact.value}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="text-center">
+                  <p className="text-2xl font-bold mb-4">THANKS FOR <span className="text-yellow-500">PATIENCE!</span></p>
+                  <p className="text-gray-600">Let's create something amazing together</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
